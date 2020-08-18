@@ -1,24 +1,19 @@
 import * as React from 'react'
+import {
+  mountMicroFrontend,
+  removeFromDom,
+  AddToDom,
+  MicroFrontendProps,
+} from './micro-frontend-dom'
 
 const getScriptId = (name: string) => `micro-frontend-script-${name}`
 
-type MicroFrontendProps = {
-  name: string
-  host: string
-}
-
 export const MicroFrontend = ({ name, host }: MicroFrontendProps) => {
   React.useEffect(() => {
-    const renderMicroFrontend = () => {
-      const windowMfe = (window as any)[`render${name}`]
-      // windowMfe && windowMfe(`${name}-container`, window.history)
-      windowMfe && windowMfe(`container`, window.history)
-    }
-
     const scriptId = getScriptId(name)
 
     if (document.getElementById(scriptId)) {
-      renderMicroFrontend()
+      mountMicroFrontend(name)
       return
     }
 
@@ -41,23 +36,19 @@ export const MicroFrontend = ({ name, host }: MicroFrontendProps) => {
             script.onload = () => {
               chunkCount--
               if (chunkCount === 0) {
-                renderMicroFrontend()
+                mountMicroFrontend(name)
               }
             }
             script.crossOrigin = ''
             script.src = path
-            console.log(`adding main element for container`)
             document.head.appendChild(script)
           })
       })
 
     return () => {
-      const windowUnmount = (window as any)[`unmount${name}`]
-      console.log(`removing main element for container`)
-      // windowUnmount && windowUnmount(`${name}-container`)
-      windowUnmount && windowUnmount(`container`)
+      removeFromDom(name)
     }
   }, [host, name])
 
-  return <div />
+  return <AddToDom name={name} />
 }

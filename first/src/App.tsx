@@ -6,7 +6,11 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
+        <img
+          src={`${process.env.REACT_APP_MY_HOSTNAME}${logo}`}
+          className='App-logo'
+          alt='logo'
+        />
         <div>This is the FIRST microfrontend</div>
       </header>
     </div>

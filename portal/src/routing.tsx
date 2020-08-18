@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router'
-import { MicroFrontend } from './micro-frontend'
+import { MicroFrontend } from './micro-frontend/micro-frontend'
 
 const {
   REACT_APP_FIRST_HOST: firstHost,
