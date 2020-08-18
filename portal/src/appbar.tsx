@@ -14,5 +14,6 @@ export const AppBar = () => (
     <Link to='/'>Home</Link>
     <Link to='/first'>First</Link>
     <Link to='/second'>Second</Link>
+    <Link to='/both'>Both</Link>
   </Wrapper>
 )
