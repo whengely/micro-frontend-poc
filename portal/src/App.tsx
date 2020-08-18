@@ -31,7 +31,6 @@ export const App = () => {
       <Wrapper>
         <AppBar />
         <LocationInfo />
-        <div id='container' />
         <Routing />
       </Wrapper>
     </BrowserRouter>
