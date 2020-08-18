@@ -1,9 +1,17 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router'
+import { MicroFrontend } from './micro-frontend'
+
+const {
+  REACT_APP_FIRST_HOST: firstHost,
+  REACT_APP_SECOND_HOST: secondHost,
+} = process.env
 
 const Home = () => <div>This is the HOME page.</div>
-const First = () => <div>This is the FIRST page.</div>
-const Second = () => <div>This is the SECOND page.</div>
+const First = () => <MicroFrontend name='First' host={firstHost ?? 'error'} />
+const Second = () => (
+  <MicroFrontend name='Second' host={secondHost ?? 'error'} />
+)
 
 export const Routing = () => (
   <Switch>

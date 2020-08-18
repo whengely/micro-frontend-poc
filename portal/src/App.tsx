@@ -4,6 +4,11 @@ import { AppBar } from './appbar'
 import { Routing } from './routing'
 import styled from 'styled-components'
 
+const {
+  REACT_APP_FIRST_HOST: firstHost,
+  REACT_APP_SECOND_HOST: secondHost,
+} = process.env
+
 const Wrapper = styled.div`
   display: grid;
   gap: 16px;
@@ -11,7 +16,13 @@ const Wrapper = styled.div`
 `
 const LocationInfo = () => {
   const { pathname } = useLocation()
-  return <div>The current path is {pathname}</div>
+  return (
+    <>
+      <div>PATHNAME: {pathname}</div>
+      <div>First Host: {firstHost}</div>
+      <div>Second Host: {secondHost}</div>
+    </>
+  )
 }
 
 export const App = () => {
@@ -20,6 +31,7 @@ export const App = () => {
       <Wrapper>
         <AppBar />
         <LocationInfo />
+        <div id='container' />
         <Routing />
       </Wrapper>
     </BrowserRouter>
