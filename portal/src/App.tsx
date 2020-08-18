@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import { BrowserRouter, useLocation } from 'react-router-dom'
+import { AppBar } from './appbar'
+import { Routing } from './routing'
+import styled from 'styled-components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Wrapper = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: auto;
+`
+const LocationInfo = () => {
+  const { pathname } = useLocation()
+  return <div>The current path is {pathname}</div>
 }
 
-export default App;
+export const App = () => {
+  return (
+    <BrowserRouter>
+      <Wrapper>
+        <AppBar />
+        <LocationInfo />
+        <Routing />
+      </Wrapper>
+    </BrowserRouter>
+  )
+}
